@@ -1,0 +1,508 @@
+# Design Specification
+
+# Expense & Budget Visualizer
+
+## Design Philosophy
+
+Create a clean, modern, and trustworthy financial dashboard.
+
+Inspired by
+
+- Vercel
+- Linear
+- Apple Wallet
+
+Apply Material Design principles only for
+
+- spacing
+- accessibility
+- responsiveness
+- interaction feedback
+
+The interface should feel lightweight, premium, and production-ready.
+
+---
+
+# Visual Style
+
+Keywords
+
+- Modern
+- Minimal
+- Premium
+- Fintech
+- Clean
+- Professional
+
+Avoid
+
+- Glassmorphism
+- Neumorphism
+- Heavy gradients
+- Busy backgrounds
+
+---
+
+# Color Palette
+
+Background
+
+#FAFAFA
+
+Surface
+
+#FFFFFF
+
+Primary Text
+
+#111827
+
+Secondary Text
+
+#6B7280
+
+Primary Accent
+
+#6366F1
+
+Success
+
+#22C55E
+
+Danger
+
+#EF4444
+
+Border
+
+#E5E7EB
+
+Divider
+
+#F1F5F9
+
+---
+
+# Dark Theme
+
+Background
+
+#09090B
+
+Surface
+
+#18181B
+
+Primary Text
+
+#FAFAFA
+
+Secondary Text
+
+#A1A1AA
+
+Border
+
+#27272A
+
+Accent
+
+#6366F1
+
+---
+
+# Typography
+
+Font
+
+Inter
+
+Heading
+
+Bold
+
+Summary Value
+
+Extra Bold
+
+Body
+
+Regular
+
+Caption
+
+Medium
+
+Maintain generous spacing and readable typography.
+
+---
+
+# Border Radius
+
+Cards
+
+20px
+
+Buttons
+
+14px
+
+Inputs
+
+14px
+
+Badges
+
+999px
+
+---
+
+# Shadows
+
+Use soft and subtle shadows.
+
+No heavy elevation.
+
+Cards should appear lightweight.
+
+---
+
+# Layout
+
+Mobile-first.
+
+Screen Structure
+
+Header
+
+↓
+
+Summary Card
+
+↓
+
+Expense Form
+
+↓
+
+Recent Transactions
+
+↓
+
+Bottom Navigation
+
+---
+
+# Dashboard Screen
+
+Contains
+
+- Header
+- Total Expense Card
+- Expense Form
+- Recent Transactions
+- Bottom Navigation
+
+The Total Expense Card is the visual focal point.
+
+---
+
+# Summary Card
+
+Displays
+
+- Total Expense
+- Large Currency Value
+- Monthly Comparison
+
+Style
+
+- White card
+- Radius 20px
+- Padding 24px
+- Soft shadow
+
+---
+
+# Expense Form
+
+Contained inside a card.
+
+Fields
+
+- Item Name
+- Amount
+- Category
+
+Primary Button
+
+Add Expense
+
+Inputs
+
+- Rounded corners
+- Soft borders
+- Comfortable padding
+
+---
+
+# Recent Transactions
+
+Scrollable list.
+
+Each item contains
+
+- Category Icon
+- Item Name
+- Category Badge
+- Amount
+- Delete Action
+
+Spacing should prioritize readability.
+
+---
+
+# Analytics Screen
+
+Contains
+
+- Total Expense
+- Doughnut Chart
+- Category Legend
+
+The chart should be the primary visual element.
+
+---
+
+# Settings Screen
+
+Contains
+
+- Theme Toggle
+- Clear Data
+
+Use confirmation dialogs before destructive actions.
+
+---
+
+# Components
+
+Cards
+
+Rounded with subtle shadows.
+
+Buttons
+
+Primary
+
+Filled Accent Color
+
+Secondary
+
+Outlined
+
+Inputs
+
+Rounded
+
+Soft border
+
+Badges
+
+Rounded pill style.
+
+Icons
+
+Use outline icons.
+
+Examples
+
+- Wallet
+- Food
+- Transport
+- Fun
+- Delete
+- Theme
+
+---
+
+# Motion
+
+Duration
+
+150–200ms
+
+Animations
+
+- Button hover
+- Card hover
+- Transaction fade in
+- Transaction fade out
+- Theme transition
+- Chart update animation
+
+Animations should be subtle.
+
+---
+
+# Spacing
+
+Use an 8-point spacing system.
+
+Common spacing
+
+8
+
+16
+
+24
+
+32
+
+40
+
+48
+
+Whitespace should improve readability.
+
+---
+
+# Responsive Behavior
+
+Primary target
+
+390px mobile width.
+
+Also support
+
+- Tablet
+- Desktop
+
+Cards expand naturally on larger screens while maintaining consistent spacing.
+
+---
+
+# Accessibility
+
+- High color contrast
+- Keyboard accessible
+- Visible focus states
+- Minimum touch target 48 × 48 px
+
+---
+
+# Design Goal
+
+The final interface should resemble a modern fintech application that feels polished, responsive, and intuitive while remaining simple enough for everyday expense tracking.
+
+---
+
+# Application Screens
+
+## Dashboard
+
+Purpose
+
+Provide an overview of the user's expenses and quick access to adding new transactions.
+
+Components
+
+- App Header
+- Total Expense Card
+- Expense Form
+- Recent Transactions
+- Bottom Navigation
+
+---
+
+## Analytics
+
+Purpose
+
+Visualize spending by category.
+
+Components
+
+- Analytics Summary
+- Doughnut Chart
+- Category Breakdown
+- Bottom Navigation
+
+---
+
+## Transaction History
+
+Purpose
+
+Display complete expense history.
+
+Components
+
+- Search Bar
+- Scrollable Transaction List
+- Delete Action
+- Bottom Navigation
+
+---
+
+## Settings
+
+Purpose
+
+Allow users to customize the application.
+
+Components
+
+- Theme Toggle
+- Clear Data
+- About
+- Bottom Navigation
+
+---
+
+# Interaction Guidelines
+
+Adding Transaction
+
+- Validate all fields.
+- Save to Local Storage.
+- Update Total Expense.
+- Update Analytics.
+- Refresh Transaction List.
+
+Deleting Transaction
+
+- Remove from Local Storage.
+- Refresh all related UI.
+- Animate removal using a fade transition.
+
+Theme Toggle
+
+- Switch between Light and Dark mode.
+- Remember selected theme using Local Storage.
+
+Navigation
+
+Bottom Navigation is persistent across all screens.
+
+Current page is highlighted using the Primary color.
+
+---
+
+# Responsive Behaviour
+
+Primary Target
+
+390px mobile width.
+
+Tablet and Desktop
+
+Maintain the same visual hierarchy while expanding cards proportionally.
+
+---
+
+# Design Goal
+
+The implementation should closely match the layout, spacing, typography, colors, and component hierarchy generated by Google Stitch.
+
+Avoid redesigning existing screens.
