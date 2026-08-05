@@ -2,14 +2,6 @@
 
 A modern, mobile-first expense tracking web application built with **HTML**, **CSS**, and **Vanilla JavaScript** for the CodingCamp Software Engineering Project.
 
-## 📸 Preview
-
-> Add a screenshot or GIF of your application here.
-
-| Dashboard | Analytics |
-|-----------|-----------|
-| ![](docs/dashboard.png) | ![](docs/analytics.png) |
-
 ---
 
 ## ✨ Features
