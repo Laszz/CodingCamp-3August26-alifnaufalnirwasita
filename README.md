@@ -148,4 +148,4 @@ This project was created for educational purposes as part of the **CodingCamp So
 
 ---
 
-Made with ❤️ for CodingCamp 2026.
+Made for CodingCamp 2026.
