@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Expense & Budget Visualizer — track, organize, and analyze your daily expenses." />
+    <meta name="description" content="Expense &amp; Budget Visualizer — track, organize, and analyze your daily expenses." />
     <title>Expense &amp; Budget Visualizer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,60 +12,40 @@
   </head>
   <body class="app-body">
 
-    <!-- ==================== APP WRAPPER ==================== -->
     <div class="app-wrapper" id="appWrapper">
 
       <!-- ==================== SCREEN: DASHBOARD ==================== -->
       <main class="screen screen--dashboard is-active" id="screenDashboard" role="main" aria-label="Dashboard">
 
-        <!-- Header -->
         <header class="app-header">
           <div class="app-header__inner">
             <div class="app-header__brand">
               <span class="app-header__logo" aria-hidden="true">
-                <!-- Lucide: wallet -->
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/>
-                  <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>
-                </svg>
+                <span class="icon icon--24" data-icon="wallet"></span>
               </span>
-              <h1 class="app-header__title">SpendTrack</h1>
+              <h1 class="app-header__title">BudgetViz</h1>
             </div>
             <button class="app-header__theme-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">
-              <!-- Lucide: sun -->
-              <svg class="icon icon--sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="12" cy="12" r="4"/>
-                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-              </svg>
-              <!-- Lucide: moon -->
-              <svg class="icon icon--moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-              </svg>
+              <span class="icon icon--sun icon--20" data-icon="sun" aria-hidden="true"></span>
+              <span class="icon icon--moon icon--20" data-icon="moon" aria-hidden="true"></span>
             </button>
           </div>
         </header>
 
+        <!-- Summary Card -->
         <section class="summary-card" aria-label="Total expense summary">
           <div class="summary-card__inner">
             <div class="summary-card__meta">
               <span class="summary-card__label">
-                <!-- Lucide: wallet -->
-                <svg class="summary-card__label-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/>
-                  <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>
-                </svg>
+                <span class="icon icon--16 summary-card__label-icon" data-icon="wallet" aria-hidden="true"></span>
                 Total Expenses
               </span>
               <span class="summary-card__period" id="summaryPeriod">This Month</span>
             </div>
             <p class="summary-card__amount" id="totalExpense" aria-live="polite">Rp 0</p>
             <div class="summary-card__comparison">
-              <!-- Lucide: trending-up (shown/hidden via JS class) -->
               <span class="summary-card__comparison-icon" id="comparisonIcon" aria-hidden="true">
-                <svg class="icon--trending-up" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-                  <polyline points="16 7 22 7 22 13"/>
-                </svg>
+                <span class="icon icon--14" data-icon="trending-up"></span>
               </span>
               <span class="summary-card__comparison-text" id="comparisonText">No previous data</span>
             </div>
@@ -76,10 +56,7 @@
         <section class="form-card" aria-label="Add new expense">
           <div class="form-card__inner">
             <h2 class="form-card__title">
-              <!-- Lucide: plus (form section heading icon) -->
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M5 12h14M12 5v14"/>
-              </svg>
+              <span class="icon icon--20" data-icon="plus" aria-hidden="true"></span>
               Add Expense
             </h2>
             <form class="expense-form" id="expenseForm" novalidate>
@@ -88,32 +65,17 @@
 
                 <div class="form-group">
                   <label class="form-label" for="itemName">Item Name</label>
-                  <input
-                    class="input-field"
-                    type="text"
-                    id="itemName"
-                    name="itemName"
-                    placeholder="e.g. Lunch, Grab, Netflix"
-                    autocomplete="off"
-                    required
-                    aria-required="true"
-                  />
+                  <input class="input-field" type="text" id="itemName" name="itemName"
+                    placeholder="e.g. Lunch, Grab, Netflix" autocomplete="off"
+                    required aria-required="true" />
                   <span class="form-error" id="itemNameError" role="alert" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
                   <label class="form-label" for="amount">Amount (Rp)</label>
-                  <input
-                    class="input-field"
-                    type="number"
-                    id="amount"
-                    name="amount"
-                    placeholder="e.g. 50000"
-                    min="1"
-                    step="1"
-                    required
-                    aria-required="true"
-                  />
+                  <input class="input-field" type="text" id="amount" name="amount"
+                    placeholder="e.g. 50.000" inputmode="numeric" autocomplete="off"
+                    required aria-required="true" />
                   <span class="form-error" id="amountError" role="alert" aria-live="polite"></span>
                 </div>
 
@@ -127,10 +89,7 @@
                       <option value="Fun">Fun</option>
                     </select>
                     <span class="select-wrapper__arrow" aria-hidden="true">
-                      <!-- Lucide: chevron-down -->
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                        <path d="m6 9 6 6 6-6"/>
-                      </svg>
+                      <span class="icon icon--16" data-icon="chevron-down"></span>
                     </span>
                   </div>
                   <span class="form-error" id="categoryError" role="alert" aria-live="polite"></span>
@@ -139,10 +98,7 @@
               </fieldset>
 
               <button class="btn btn--primary" type="submit" id="addExpenseBtn">
-                <!-- Lucide: plus -->
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M5 12h14M12 5v14"/>
-                </svg>
+                <span class="icon icon--18" data-icon="plus" aria-hidden="true"></span>
                 Add Expense
               </button>
             </form>
@@ -154,24 +110,14 @@
           <div class="transactions-card__inner">
             <div class="transactions-card__header">
               <h2 class="transactions-card__title">
-                <!-- Lucide: receipt -->
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/>
-                  <path d="M14 8H8M16 12H8M13 16H8"/>
-                </svg>
+                <span class="icon icon--18" data-icon="receipt" aria-hidden="true"></span>
                 Recent Transactions
               </h2>
               <span class="transactions-card__count" id="recentCount" aria-live="polite">0 items</span>
             </div>
-            <ul class="transaction-list" id="recentTransactionList" aria-label="Recent transaction list">
-              <!-- Populated by JS -->
-            </ul>
+            <ul class="transaction-list" id="recentTransactionList" aria-label="Recent transaction list"></ul>
             <div class="transaction-empty" id="recentEmpty" aria-live="polite">
-              <!-- Lucide: receipt -->
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/>
-                <path d="M14 8H8M16 12H8M13 16H8"/>
-              </svg>
+              <span class="icon icon--48" data-icon="receipt" aria-hidden="true"></span>
               <p>No transactions yet.<br/>Add your first expense above.</p>
             </div>
           </div>
@@ -193,11 +139,7 @@
         <section class="analytics-summary-card" aria-label="Analytics summary">
           <div class="analytics-summary-card__inner">
             <span class="analytics-summary-card__label">
-              <!-- Lucide: trending-up -->
-              <svg class="summary-card__label-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-                <polyline points="16 7 22 7 22 13"/>
-              </svg>
+              <span class="icon icon--16 summary-card__label-icon" data-icon="trending-up" aria-hidden="true"></span>
               Total Spending
             </span>
             <p class="analytics-summary-card__amount" id="analyticsTotalAmount" aria-live="polite">Rp 0</p>
@@ -205,15 +147,10 @@
           </div>
         </section>
 
-        <!-- Chart Card -->
         <section class="chart-card" aria-label="Spending by category chart">
           <div class="chart-card__inner">
             <h3 class="chart-card__title">
-              <!-- Lucide: chart-pie -->
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
-                <path d="M22 12A10 10 0 0 0 12 2v10z"/>
-              </svg>
+              <span class="icon icon--18" data-icon="chart-pie" aria-hidden="true"></span>
               Spending by Category
             </h3>
             <div class="chart-wrapper" role="img" aria-label="Doughnut chart showing spending by category">
@@ -223,18 +160,9 @@
                 <span class="chart-center-label__text">Top</span>
               </div>
             </div>
-
-            <!-- Category Legend / Breakdown -->
-            <div class="category-breakdown" id="categoryBreakdown" aria-label="Category spending breakdown">
-              <!-- Populated by JS -->
-            </div>
-
+            <div class="category-breakdown" id="categoryBreakdown" aria-label="Category spending breakdown"></div>
             <div class="analytics-empty" id="analyticsEmpty" aria-live="polite">
-              <!-- Lucide: chart-pie -->
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
-                <path d="M22 12A10 10 0 0 0 12 2v10z"/>
-              </svg>
+              <span class="icon icon--48" data-icon="chart-pie" aria-hidden="true"></span>
               <p>No data to display.<br/>Add expenses to see analytics.</p>
             </div>
           </div>
@@ -253,28 +181,16 @@
           </div>
         </header>
 
-        <!-- Search -->
         <section class="search-section" aria-label="Search transactions">
           <div class="search-wrapper">
             <span class="search-wrapper__icon" aria-hidden="true">
-              <!-- Lucide: search -->
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="m21 21-4.3-4.3"/>
-              </svg>
+              <span class="icon icon--18" data-icon="search"></span>
             </span>
-            <input
-              class="input-field input-field--search"
-              type="search"
-              id="searchInput"
-              placeholder="Search transactions..."
-              aria-label="Search transactions"
-              autocomplete="off"
-            />
+            <input class="input-field input-field--search" type="search" id="searchInput"
+              placeholder="Search transactions..." aria-label="Search transactions" autocomplete="off" />
           </div>
         </section>
 
-        <!-- Sort Controls -->
         <section class="sort-section" aria-label="Sort transactions">
           <div class="sort-controls">
             <span class="sort-controls__label">Sort by:</span>
@@ -287,29 +203,18 @@
           </div>
         </section>
 
-        <!-- Full Transaction List -->
         <section class="transactions-card" aria-label="All transactions">
           <div class="transactions-card__inner">
             <div class="transactions-card__header">
               <h3 class="transactions-card__title">
-                <!-- Lucide: receipt -->
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/>
-                  <path d="M14 8H8M16 12H8M13 16H8"/>
-                </svg>
+                <span class="icon icon--18" data-icon="receipt" aria-hidden="true"></span>
                 All Transactions
               </h3>
               <span class="transactions-card__count" id="historyCount" aria-live="polite">0 items</span>
             </div>
-            <ul class="transaction-list" id="historyTransactionList" aria-label="Full transaction history list">
-              <!-- Populated by JS -->
-            </ul>
+            <ul class="transaction-list" id="historyTransactionList" aria-label="Full transaction history list"></ul>
             <div class="transaction-empty" id="historyEmpty" aria-live="polite">
-              <!-- Lucide: receipt -->
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/>
-                <path d="M14 8H8M16 12H8M13 16H8"/>
-              </svg>
+              <span class="icon icon--48" data-icon="receipt" aria-hidden="true"></span>
               <p>No transactions found.</p>
             </div>
           </div>
@@ -330,20 +235,36 @@
 
         <div class="settings-content">
 
-          <!-- Data Management -->
+          <section class="settings-card" aria-label="Appearance settings">
+            <div class="settings-card__inner">
+              <h3 class="settings-card__section-title">Appearance</h3>
+              <div class="settings-row">
+                <div class="settings-row__info">
+                  <span class="settings-row__icon" aria-hidden="true">
+                    <span class="icon icon--20" data-icon="moon-settings"></span>
+                  </span>
+                  <div class="settings-row__text">
+                    <span class="settings-row__label">Dark Mode</span>
+                    <span class="settings-row__description">Switch between light and dark theme</span>
+                  </div>
+                </div>
+                <label class="toggle-switch" for="darkModeToggle" aria-label="Toggle dark mode">
+                  <input class="toggle-switch__input" type="checkbox" id="darkModeToggle" role="switch" aria-checked="false" />
+                  <span class="toggle-switch__track">
+                    <span class="toggle-switch__thumb"></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </section>
+
           <section class="settings-card" aria-label="Data management settings">
             <div class="settings-card__inner">
               <h3 class="settings-card__section-title">Data Management</h3>
-
               <div class="settings-row settings-row--danger">
                 <div class="settings-row__info">
                   <span class="settings-row__icon settings-row__icon--danger" aria-hidden="true">
-                    <!-- Lucide: trash-2 -->
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
-                      <line x1="10" x2="10" y1="11" y2="17"/>
-                      <line x1="14" x2="14" y1="11" y2="17"/>
-                    </svg>
+                    <span class="icon icon--20" data-icon="trash-2"></span>
                   </span>
                   <div class="settings-row__text">
                     <span class="settings-row__label">Clear All Data</span>
@@ -355,21 +276,16 @@
             </div>
           </section>
 
-          <!-- About -->
           <section class="settings-card" aria-label="About the application">
             <div class="settings-card__inner">
               <h3 class="settings-card__section-title">About</h3>
               <div class="settings-row">
                 <div class="settings-row__info">
                   <span class="settings-row__icon" aria-hidden="true">
-                    <!-- Lucide: info -->
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="12" cy="12" r="10"/>
-                      <path d="M12 16v-4M12 8h.01"/>
-                    </svg>
+                    <span class="icon icon--20" data-icon="info"></span>
                   </span>
                   <div class="settings-row__text">
-                    <span class="settings-row__label">SpendTrack</span>
+                    <span class="settings-row__label">BudgetViz</span>
                     <span class="settings-row__description">Version 1.0.0</span>
                   </div>
                 </div>
@@ -378,12 +294,7 @@
               <div class="settings-row">
                 <div class="settings-row__info">
                   <span class="settings-row__icon" aria-hidden="true">
-                    <!-- Lucide: database -->
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                      <ellipse cx="12" cy="5" rx="9" ry="3"/>
-                      <path d="M3 5V19a9 3 0 0 0 18 0V5"/>
-                      <path d="M3 12a9 3 0 0 0 18 0"/>
-                    </svg>
+                    <span class="icon icon--20" data-icon="database"></span>
                   </span>
                   <div class="settings-row__text">
                     <span class="settings-row__label">Storage</span>
@@ -401,65 +312,44 @@
       <!-- ==================== BOTTOM NAVIGATION ==================== -->
       <nav class="bottom-nav" role="navigation" aria-label="Main navigation">
         <ul class="bottom-nav__list">
-
           <li class="bottom-nav__item">
             <button class="bottom-nav__btn is-active" type="button" data-screen="dashboard" aria-label="Dashboard" aria-current="page">
               <span class="bottom-nav__icon" aria-hidden="true">
-                <!-- Lucide: house -->
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
-                  <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                </svg>
+                <span class="icon icon--22" data-icon="house"></span>
               </span>
               <span class="bottom-nav__label">Dashboard</span>
             </button>
           </li>
-
           <li class="bottom-nav__item">
             <button class="bottom-nav__btn" type="button" data-screen="analytics" aria-label="Analytics" aria-current="false">
               <span class="bottom-nav__icon" aria-hidden="true">
-                <!-- Lucide: chart-pie -->
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
-                  <path d="M22 12A10 10 0 0 0 12 2v10z"/>
-                </svg>
+                <span class="icon icon--22" data-icon="chart-pie"></span>
               </span>
               <span class="bottom-nav__label">Analytics</span>
             </button>
           </li>
-
           <li class="bottom-nav__item">
             <button class="bottom-nav__btn" type="button" data-screen="history" aria-label="Transaction History" aria-current="false">
               <span class="bottom-nav__icon" aria-hidden="true">
-                <!-- Lucide: history -->
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-                  <path d="M3 3v5h5"/>
-                  <path d="M12 7v5l4 2"/>
-                </svg>
+                <span class="icon icon--22" data-icon="history"></span>
               </span>
               <span class="bottom-nav__label">History</span>
             </button>
           </li>
-
           <li class="bottom-nav__item">
             <button class="bottom-nav__btn" type="button" data-screen="settings" aria-label="Settings" aria-current="false">
               <span class="bottom-nav__icon" aria-hidden="true">
-                <!-- Lucide: settings -->
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
-                  <circle cx="12" cy="12" r="3"/>
-                </svg>
+                <span class="icon icon--22" data-icon="settings"></span>
               </span>
               <span class="bottom-nav__label">Settings</span>
             </button>
           </li>
-
         </ul>
       </nav>
 
       <!-- ==================== CONFIRM DIALOG ==================== -->
-      <div class="dialog-overlay" id="dialogOverlay" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" aria-describedby="dialogMessage" hidden>
+      <div class="dialog-overlay" id="dialogOverlay" role="dialog" aria-modal="true"
+        aria-labelledby="dialogTitle" aria-describedby="dialogMessage" hidden>
         <div class="dialog">
           <h2 class="dialog__title" id="dialogTitle">Confirm Action</h2>
           <p class="dialog__message" id="dialogMessage">Are you sure?</p>
@@ -470,10 +360,8 @@
         </div>
       </div>
 
-      <!-- ==================== TOAST NOTIFICATION ==================== -->
-      <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true">
-        <!-- Toasts injected by JS -->
-      </div>
+      <!-- ==================== TOAST ==================== -->
+      <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
 
     </div><!-- /.app-wrapper -->
 

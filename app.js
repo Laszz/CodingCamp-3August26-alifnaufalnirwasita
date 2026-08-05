@@ -1,9 +1,64 @@
 /**
  * Expense & Budget Visualizer — app.js
- * Architecture: Storage → State → Utilities → Rendering → Chart → Theme → Navigation → Events
+ * Architecture: Icons → Storage → State → Utilities → Rendering → Chart → Theme → Navigation → Events
  */
 
 'use strict';
+
+/* ============================================================
+   0. ICONS — file-based SVG loader
+   Fetches each SVG file once, caches the markup, then stamps
+   the inline SVG into every [data-icon] element so that
+   stroke="currentColor" keeps working in light and dark mode.
+   ============================================================ */
+const Icons = (() => {
+  const BASE = 'assets/icons/';
+  const cache = {};
+
+  async function fetchSVG(name) {
+    if (cache[name]) return cache[name];
+    try {
+      const res = await fetch(`${BASE}${name}.svg`);
+      if (!res.ok) throw new Error(`Icon not found: ${name}`);
+      const text = await res.text();
+      // Strip the XML declaration / doctype if present, keep only <svg>...</svg>
+      const match = text.match(/<svg[\s\S]*<\/svg>/i);
+      cache[name] = match ? match[0] : '';
+      return cache[name];
+    } catch (err) {
+      console.warn('[Icons]', err.message);
+      cache[name] = '';
+      return '';
+    }
+  }
+
+  async function hydrateAll() {
+    const elements = document.querySelectorAll('[data-icon]');
+    const names = [...new Set([...elements].map(el => el.dataset.icon))];
+    // Pre-fetch all unique icons in parallel
+    await Promise.all(names.map(fetchSVG));
+    // Stamp each element
+    elements.forEach(el => {
+      const svg = cache[el.dataset.icon];
+      if (svg) el.innerHTML = svg;
+    });
+  }
+
+  // Re-stamp a single container (used when JS inserts new [data-icon] nodes)
+  async function hydrateNode(container) {
+    const elements = container.querySelectorAll('[data-icon]');
+    for (const el of elements) {
+      const svg = await fetchSVG(el.dataset.icon);
+      if (svg) el.innerHTML = svg;
+    }
+  }
+
+  function iconHTML(name, sizeClass = '') {
+    return `<span class="icon${sizeClass ? ' ' + sizeClass : ''}" data-icon="${name}"></span>`;
+  }
+
+  return { hydrateAll, hydrateNode, iconHTML };
+})();
 
 /* ============================================================
    1. STORAGE
@@ -109,12 +164,12 @@ const Utils = (() => {
   }
 
   function getCategoryIcon(category) {
-    const icons = {
-      'Food': `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>`,
-      'Transport': `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M19 17H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11l5 5v5a2 2 0 0 1-2 2Z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M3 12h18"/></svg>`,
-      'Fun': `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="17" y1="13" y2="13"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg>`,
+    const map = {
+      'Food':      'utensils',
+      'Transport': 'car',
+      'Fun':       'gamepad-2',
     };
-    return icons[category] || `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>`;
+    return map[category] || 'credit-card';
   }
 
   function getTotalAmount(transactions) {
@@ -410,39 +465,45 @@ const Render = (() => {
     const compIcon = document.getElementById('comparisonIcon');
     const compText = document.getElementById('comparisonText');
 
-    const ICON_UP   = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`;
-    const ICON_DOWN  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>`;
-    const ICON_SAME  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"/></svg>`;
+    const ICON_UP   = Icons.iconHTML('trending-up',   'icon--14');
+    const ICON_DOWN = Icons.iconHTML('trending-down', 'icon--14');
+    const ICON_SAME = Icons.iconHTML('minus',         'icon--14');
 
     if (prevTotal === 0) {
       compIcon.innerHTML = ICON_SAME;
+      Icons.hydrateNode(compIcon);
       compText.textContent = 'No previous month data';
     } else {
       const diff = currentTotal - prevTotal;
       const pct = Math.abs(Math.round((diff / prevTotal) * 100));
       if (diff > 0) {
         compIcon.innerHTML = ICON_UP;
+        Icons.hydrateNode(compIcon);
         compText.textContent = `${pct}% more than last month`;
       } else if (diff < 0) {
         compIcon.innerHTML = ICON_DOWN;
+        Icons.hydrateNode(compIcon);
         compText.textContent = `${pct}% less than last month`;
       } else {
         compIcon.innerHTML = ICON_SAME;
+        Icons.hydrateNode(compIcon);
         compText.textContent = 'Same as last month';
       }
     }
   }
 
   /* --- Build a single transaction list item element --- */
-  function buildTransactionItem(tx) {
+  async function buildTransactionItem(tx) {
     const slug = Utils.getCategorySlug(tx.category);
-    const icon = Utils.getCategoryIcon(tx.category);
+    const iconName = Utils.getCategoryIcon(tx.category);
 
     const li = document.createElement('li');
     li.className = 'transaction-item';
     li.dataset.id = tx.id;
     li.innerHTML = `
-      <span class="transaction-item__icon transaction-item__icon--${slug}" aria-hidden="true">${icon}</span>
+      <span class="transaction-item__icon transaction-item__icon--${slug}" aria-hidden="true">
+        ${Icons.iconHTML(iconName, 'icon--20')}
+      </span>
       <div class="transaction-item__body">
         <span class="transaction-item__name" title="${Utils.sanitizeString(tx.name)}">${Utils.sanitizeString(tx.name)}</span>
         <div class="transaction-item__meta">
@@ -458,25 +519,21 @@ const Render = (() => {
           data-id="${tx.id}"
           aria-label="Delete ${Utils.sanitizeString(tx.name)}"
         >
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
-            <line x1="10" x2="10" y1="11" y2="17"/>
-            <line x1="14" x2="14" y1="11" y2="17"/>
-          </svg>
+          ${Icons.iconHTML('trash-2', 'icon--15')}
         </button>
       </div>
     `;
+    await Icons.hydrateNode(li);
     return li;
   }
 
   /* --- Recent Transactions (dashboard — max 5) --- */
-  function recentTransactions() {
+  async function recentTransactions() {
     const list = document.getElementById('recentTransactionList');
     const empty = document.getElementById('recentEmpty');
     const count = document.getElementById('recentCount');
 
     const recent = State.getTransactions().slice(0, 5);
-
     list.innerHTML = '';
 
     if (!recent.length) {
@@ -487,11 +544,13 @@ const Render = (() => {
 
     empty.style.display = 'none';
     count.textContent = `${recent.length} item${recent.length !== 1 ? 's' : ''}`;
-    recent.forEach(tx => list.appendChild(buildTransactionItem(tx)));
+    for (const tx of recent) {
+      list.appendChild(await buildTransactionItem(tx));
+    }
   }
 
   /* --- History Transactions (full list with search + sort) --- */
-  function historyTransactions() {
+  async function historyTransactions() {
     const list = document.getElementById('historyTransactionList');
     const empty = document.getElementById('historyEmpty');
     const count = document.getElementById('historyCount');
@@ -508,8 +567,8 @@ const Render = (() => {
 
     const sort = State.getSortOrder();
     txs.sort((a, b) => {
-      if (sort === 'date-desc') return new Date(b.date) - new Date(a.date);
-      if (sort === 'date-asc')  return new Date(a.date) - new Date(b.date);
+      if (sort === 'date-desc')   return new Date(b.date) - new Date(a.date);
+      if (sort === 'date-asc')    return new Date(a.date) - new Date(b.date);
       if (sort === 'amount-desc') return b.amount - a.amount;
       if (sort === 'amount-asc')  return a.amount - b.amount;
       return 0;
@@ -525,7 +584,9 @@ const Render = (() => {
 
     empty.style.display = 'none';
     count.textContent = `${txs.length} item${txs.length !== 1 ? 's' : ''}`;
-    txs.forEach(tx => list.appendChild(buildTransactionItem(tx)));
+    for (const tx of txs) {
+      list.appendChild(await buildTransactionItem(tx));
+    }
   }
 
   /* --- Analytics --- */
@@ -585,7 +646,7 @@ const Transactions = (() => {
       valid = false;
     }
 
-    const parsedAmount = parseFloat(amount);
+    const parsedAmount = parseFloat(amount.replace(/\./g, '').replace(',', '.'));
     if (!amount || isNaN(parsedAmount) || parsedAmount <= 0) {
       amountInput.classList.add('is-error');
       amountErr.textContent = 'Please enter a valid amount greater than 0.';
@@ -605,7 +666,7 @@ const Transactions = (() => {
     const tx = {
       id: Utils.generateId(),
       name: name.trim(),
-      amount: parseFloat(amount),
+      amount: parseFloat(amount.replace(/\./g, '').replace(',', '.')),
       category,
       date: new Date().toISOString(),
     };
@@ -859,7 +920,26 @@ const Events = (() => {
     if (btn) btn.addEventListener('click', () => Transactions.clearAll());
   }
 
-  /* --- Keyboard: clear form errors on input --- */
+  /* --- Amount field: real-time thousand-separator formatting --- */
+  function bindAmountFormat() {
+    const amountInput = document.getElementById('amount');
+
+    amountInput.addEventListener('input', () => {
+      // Strip everything except digits
+      const digits = amountInput.value.replace(/\D/g, '');
+      // Format with dots as thousand separators (id-ID locale uses '.')
+      const formatted = digits === '' ? '' : Number(digits).toLocaleString('id-ID');
+      // Preserve cursor: set value then move caret to end
+      amountInput.value = formatted;
+    });
+
+    // On paste: let input event handle it
+    amountInput.addEventListener('paste', () => {
+      setTimeout(() => amountInput.dispatchEvent(new Event('input')), 0);
+    });
+  }
+
+
   function bindInputClearErrors() {
     ['itemName', 'amount', 'category'].forEach(id => {
       const el = document.getElementById(id);
@@ -881,6 +961,7 @@ const Events = (() => {
     bindSettingsTheme();
     bindClearData();
     bindInputClearErrors();
+    bindAmountFormat();
   }
 
   return { init };
@@ -890,7 +971,7 @@ const Events = (() => {
 /* ============================================================
    12. INITIALIZATION
    ============================================================ */
-function init() {
+async function init() {
   // Restore data from Local Storage
   State.setTransactions(Storage.getTransactions());
 
@@ -903,7 +984,10 @@ function init() {
   // Wire up all event listeners
   Events.init();
 
-  // Initial render
+  // Hydrate all static [data-icon] elements in the HTML
+  await Icons.hydrateAll();
+
+  // Initial render (populates dynamic lists which also hydrate their icons)
   Render.all();
 }
 
