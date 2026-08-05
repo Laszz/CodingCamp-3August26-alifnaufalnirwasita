@@ -1,36 +1,53 @@
 # 💸 Spendly — Expense & Budget Visualizer
 
-A modern, mobile-first expense tracking web application built with **HTML**, **CSS**, and **Vanilla JavaScript**.
+A modern, responsive, and mobile-first expense tracking web application built with **HTML**, **CSS**, and **Vanilla JavaScript**.
 
-Spendly helps users record daily expenses, monitor spending habits, and visualize financial data through an intuitive dashboard and interactive charts.
+Spendly helps users record daily expenses, monitor spending habits, and visualize financial data through an intuitive dashboard with interactive charts. All data is stored locally using the browser's **Local Storage API**, making the application lightweight and easy to use without a backend.
+
+---
+
+## 📸 Preview
+
+### Mobile
+
+![Mobile Preview](./assets/images/preview.png)
+
+### Dark Mode
+
+![Dark Mode Preview](./assets/images/dark-preview.png)
 
 ---
 
 ## ✨ Features
 
 ### 📊 Dashboard
+
 - View total expenses
 - Monthly spending summary
 - Recent transactions
 - Quick expense input
 
 ### ➕ Expense Management
+
 - Add new expenses
 - Delete transactions
 - Form validation
 - Automatic balance updates
 
 ### 📈 Analytics
+
 - Interactive Doughnut Chart using Chart.js
 - Expense breakdown by category
 - Real-time chart updates
 
 ### 📜 Transaction History
+
 - View all transactions
 - Search transactions
 - Sort transactions
 
 ### ⚙️ Settings
+
 - Dark / Light Mode
 - Clear all data
 - Local Storage persistence
@@ -52,8 +69,13 @@ Spendly helps users record daily expenses, monitor spending habits, and visualiz
 
 ```text
 .
-├── assets/
-│   └── icons/
+├── assets
+│   ├── icons
+│   └── images
+│       ├── desktop-preview.png
+│       ├── mobile-preview.png
+│       └── dark-preview.png
+│
 ├── index.html
 ├── styles.css
 ├── app.js
@@ -72,15 +94,17 @@ Spendly helps users record daily expenses, monitor spending habits, and visualiz
 
 ## 💾 Data Storage
 
-All expense data is stored locally using the browser's **Local Storage API**.
+All application data is stored locally using the browser's **Local Storage API**.
 
-No backend or database is required.
+No backend server or database is required.
 
 ---
 
 ## 📱 Responsive Design
 
-Designed using a **mobile-first** approach and optimized for:
+Spendly follows a **mobile-first** design approach and is fully responsive across different devices.
+
+Supported devices:
 
 - 📱 Mobile
 - 💻 Tablet
@@ -94,6 +118,7 @@ Designed using a **mobile-first** approach and optimized for:
 - ✅ Monthly Expense Summary
 - ✅ Transaction Search
 - ✅ Transaction Sorting
+- ✅ Persistent Local Storage
 
 ---
 
@@ -105,34 +130,43 @@ Clone this repository:
 git clone https://github.com/Laszz/CodingCamp-3August26-alifnaufalnirwasita.git
 ```
 
-Go to the project directory:
+Navigate to the project directory:
 
 ```bash
 cd CodingCamp-3August26-alifnaufalnirwasita
 ```
 
-Open `index.html` in your browser, or use **Live Server** in Visual Studio Code.
+Run the application by opening:
+
+```text
+index.html
+```
+
+Or use **Live Server** in Visual Studio Code.
 
 ---
 
 ## 🌐 Live Demo
 
-🔗 https://laszz.github.io/CodingCamp-3August26-alifnaufalnirwasita/
+**GitHub Pages**
+
+https://laszz.github.io/CodingCamp-3August26-alifnaufalnirwasita/
 
 ---
 
 ## 📚 Learning Objectives
 
-This project demonstrates:
+This project demonstrates the implementation of:
 
-- Semantic HTML
-- Responsive CSS
+- Semantic HTML5
+- Responsive CSS3
 - Mobile-first Design
+- Vanilla JavaScript (ES6)
 - DOM Manipulation
 - Event Handling
 - Local Storage API
-- Data Visualization with Chart.js
-- Vanilla JavaScript Best Practices
+- Data Visualization using Chart.js
+- Clean User Interface Design
 
 ---
 
@@ -142,4 +176,12 @@ This project was created for educational purposes as part of the **CodingCamp So
 
 ---
 
-Made for CodingCamp 2026.
+## 👨‍💻 Author
+
+**Alif Naufal Nirwasita**
+
+- GitHub: https://github.com/Laszz
+
+---
+
+Made for CodingCamp 2026
