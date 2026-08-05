@@ -1,6 +1,8 @@
 # 💸 Spendly — Expense & Budget Visualizer
 
-A modern, mobile-first expense tracking web application built with **HTML**, **CSS**, and **Vanilla JavaScript** for the CodingCamp Software Engineering Project.
+A modern, mobile-first expense tracking web application built with **HTML**, **CSS**, and **Vanilla JavaScript**.
+
+Spendly helps users record daily expenses, monitor spending habits, and visualize financial data through an intuitive dashboard and interactive charts.
 
 ---
 
@@ -16,12 +18,12 @@ A modern, mobile-first expense tracking web application built with **HTML**, **C
 - Add new expenses
 - Delete transactions
 - Form validation
-- Automatic total updates
+- Automatic balance updates
 
 ### 📈 Analytics
 - Interactive Doughnut Chart using Chart.js
-- Spending breakdown by category
-- Real-time updates
+- Expense breakdown by category
+- Real-time chart updates
 
 ### 📜 Transaction History
 - View all transactions
@@ -39,45 +41,46 @@ A modern, mobile-first expense tracking web application built with **HTML**, **C
 
 - HTML5
 - CSS3
-- Vanilla JavaScript
+- Vanilla JavaScript (ES6)
 - Chart.js
-- Local Storage API
 - Lucide Icons
+- Local Storage API
 
 ---
 
 ## 📂 Project Structure
 
-```
+```text
 .
+├── assets/
+│   └── icons/
 ├── index.html
 ├── styles.css
 ├── app.js
-├── README.md
-└── assets/
+└── README.md
 ```
 
 ---
 
-## 🎯 Categories
+## 🎯 Expense Categories
 
 - 🍔 Food
 - 🚗 Transport
-- 🎮 Fun
+- 🎮 Entertainment
 
 ---
 
 ## 💾 Data Storage
 
-All application data is stored locally using the browser's **Local Storage API**.
+All expense data is stored locally using the browser's **Local Storage API**.
 
-No backend server is required.
+No backend or database is required.
 
 ---
 
 ## 📱 Responsive Design
 
-The application is designed using a **mobile-first** approach and supports:
+Designed using a **mobile-first** approach and optimized for:
 
 - 📱 Mobile
 - 💻 Tablet
@@ -85,10 +88,11 @@ The application is designed using a **mobile-first** approach and supports:
 
 ---
 
-## 🌙 Optional Features
+## 🌙 Additional Features
 
 - ✅ Dark / Light Mode
-- ✅ Monthly Summary
+- ✅ Monthly Expense Summary
+- ✅ Transaction Search
 - ✅ Transaction Sorting
 
 ---
@@ -98,32 +102,22 @@ The application is designed using a **mobile-first** approach and supports:
 Clone this repository:
 
 ```bash
-git clone https://github.com/yourusername/CodingCamp-3August26-yourname.git
+git clone https://github.com/Laszz/CodingCamp-3August26-alifnaufalnirwasita.git
 ```
 
-Open the project:
+Go to the project directory:
 
 ```bash
-cd CodingCamp-3August26-yourname
+cd CodingCamp-3August26-alifnaufalnirwasita
 ```
 
-Run the application by opening:
-
-```text
-index.html
-```
-
-or use **Live Server** in Visual Studio Code.
+Open `index.html` in your browser, or use **Live Server** in Visual Studio Code.
 
 ---
 
 ## 🌐 Live Demo
 
-GitHub Pages
-
-```
-https://yourusername.github.io/CodingCamp-3August26-yourname/
-```
+🔗 https://laszz.github.io/CodingCamp-3August26-alifnaufalnirwasita/
 
 ---
 
@@ -133,12 +127,12 @@ This project demonstrates:
 
 - Semantic HTML
 - Responsive CSS
-- Vanilla JavaScript
+- Mobile-first Design
 - DOM Manipulation
 - Event Handling
-- Local Storage
-- Data Visualization using Chart.js
-- Mobile-first UI Design
+- Local Storage API
+- Data Visualization with Chart.js
+- Vanilla JavaScript Best Practices
 
 ---
 
