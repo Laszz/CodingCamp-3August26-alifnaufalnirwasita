@@ -8,33 +8,28 @@ Spendly helps users record daily expenses, monitor spending habits, and visualiz
 
 ## 📸 Preview
 
-## 📸 Preview
+<table align="center">
+  <tr>
+    <td align="center">
+      <b>Dashboard</b><br><br>
+      <img src="./assets/images/dashboard.png" width="300">
+    </td>
+    <td align="center">
+      <b>Analytics</b><br><br>
+      <img src="./assets/images/analytics.png" width="300">
+    </td>
+  </tr>
 
-<table>
-<tr>
-<td align="center">
-<b>Dashboard</b><br><br>
-<img src="./assets/images/dashboard.png" width="250">
-</td>
-
-<td align="center">
-<b>Analytics</b><br><br>
-<img src="./assets/images/analytics.png" width="250">
-</td>
-</tr>
-
-<td align="center">
-<b>Analytics</b><br><br>
-<img src="./assets/images/history.png" width="250">
-</td>
-</tr>
-
-<td align="center">
-<b>Analytics</b><br><br>
-<img src="./assets/images/settings.png" width="250">
-</td>
-</tr
-
+  <tr>
+    <td align="center">
+      <b>History</b><br><br>
+      <img src="./assets/images/history.png" width="300">
+    </td>
+    <td align="center">
+      <b>Settings</b><br><br>
+      <img src="./assets/images/settings.png" width="300">
+    </td>
+  </tr>
 </table>
 
 ---
