@@ -8,13 +8,21 @@ Spendly helps users record daily expenses, monitor spending habits, and visualiz
 
 ## 📸 Preview
 
-### Mobile
+## 📸 Preview
 
-![Mobile Preview](./assets/images/preview.png)
+<table>
+<tr>
+<td align="center">
+<b>Mobile</b><br><br>
+<img src="./assets/images/preview.png" width="250">
+</td>
 
-### Dark Mode
-
-![Dark Mode Preview](./assets/images/dark-preview.png)
+<td align="center">
+<b>Dark Mode</b><br><br>
+<img src="./assets/images/dark-preview.png" width="250">
+</td>
+</tr>
+</table>
 
 ---
 
