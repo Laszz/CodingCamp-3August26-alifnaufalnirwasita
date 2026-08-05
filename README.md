@@ -68,9 +68,6 @@ Spendly helps users record daily expenses, monitor spending habits, and visualiz
 ├── assets
 │   ├── icons
 │   └── images
-│       ├── desktop-preview.png
-│       ├── mobile-preview.png
-│       └── dark-preview.png
 │
 ├── index.html
 ├── styles.css
